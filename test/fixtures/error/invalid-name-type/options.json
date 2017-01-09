@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    ["../../../../lib/index.js", {
+      "path": "some-path",
+      "tagName": "Icon"
+    }]
+  ],
+  "throws": "Expected the \"name\" prop to be a string"
+}

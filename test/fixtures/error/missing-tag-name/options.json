@@ -1,0 +1,8 @@
+{
+  "plugins": [
+    ["../../../../lib/index.js", {
+      "path": "some-path"
+    }]
+  ],
+  "throws": "The babel-plugin-jsx-svg-icon-inject plugin requires a \"tagName\" option"
+}

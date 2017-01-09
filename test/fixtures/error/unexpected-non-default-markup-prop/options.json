@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["../../../../lib/index.js", {
+      "markupPropName": "html",
+      "path": "some-path",
+      "tagName": "Icon"
+    }]
+  ],
+  "throws": "The \"html\" prop is for internal use only, please use \"name\" with the icon name instead"
+}

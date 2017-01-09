@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["../../../../lib/index.js", {
+      "markupPropName": "html",
+      "namePropName": "type",
+      "path": "some-path",
+      "tagName": "Icon"
+    }]
+  ]
+}

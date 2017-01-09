@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    ["../../../../lib/index.js", {
+      "path": "some-path",
+      "tagName": "Icon"
+    }]
+  ],
+  "throws": "The \"name\" prop required for the Icon component is missing"
+}

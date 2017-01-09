@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    ["../../../../lib/index.js", {
+      "namePropName": "type",
+      "path": "some-path",
+      "tagName": "Icon"
+    }]
+  ],
+  "throws": "Found a duplicate \"type\" prop"
+}
