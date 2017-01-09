@@ -1,4 +1,4 @@
-var _iconMarkupFoo5 = require("/root/some-path/foo.svg");
+var _iconMarkupFoo5 = require("../../../../some-path/foo.svg");
 
 function Foo(_iconMarkupFoo) {
   const _iconMarkupFoo2 = null;

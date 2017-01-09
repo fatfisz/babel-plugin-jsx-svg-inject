@@ -1,9 +1,24 @@
-import { join, resolve } from 'path';
+import { dirname, isAbsolute, join, relative, resolve } from 'path';
 
 import babelPluginSyntaxJSX from 'babel-plugin-syntax-jsx';
 
 
 const pluginName = 'babel-plugin-jsx-svg-icon-inject';
+
+function getPath(filename, path, iconName) {
+  const iconPath = join(path, `${iconName}.svg`).replace(/\\/g, '/');
+
+  if (isAbsolute(path)) {
+    return iconPath;
+  }
+
+  if (path[0] === '.') {
+    const scriptDir = dirname(filename);
+    return relative(scriptDir, resolve(iconPath)).replace(/\\/g, '/');
+  }
+
+  return iconPath;
+}
 
 export default function ({ types }) {
 
@@ -13,7 +28,7 @@ export default function ({ types }) {
     }
 
     const markupId = path.scope.generateUidIdentifier(`icon markup ${iconName}`);
-    const pathToIcon = resolve(join(state.opts.path, `${iconName}.svg`));
+    const pathToIcon = getPath(this.file.opts.filename, state.opts.path, iconName);
     const requireNode = types.callExpression(
       types.identifier('require'),
       [types.StringLiteral(pathToIcon)]
