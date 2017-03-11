@@ -1,5 +1,5 @@
-var _iconMarkupFoo = require("../../../../some-path/foo.svg");
+var _svgMarkupFoo = require("../../../../some-path/foo.svg");
 
 function Foo() {
-  return () => [<Icon markup={_iconMarkupFoo} />];
+  return () => [<Icon markup={_svgMarkupFoo} />];
 }

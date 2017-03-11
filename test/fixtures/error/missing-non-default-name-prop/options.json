@@ -1,10 +1,10 @@
 {
   "plugins": [
     ["../../../../lib/index.js", {
-      "namePropName": "type",
-      "path": "some-path",
+      "nameProp": "type",
+      "root": "some-path",
       "tagName": "Icon"
     }]
   ],
-  "throws": "The \"type\" prop required for the Icon component is missing"
+  "throws": "The \"type\" prop required for the Icon element is missing"
 }

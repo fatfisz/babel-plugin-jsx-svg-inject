@@ -1,3 +1,3 @@
-const _iconMarkupFoo = null;
+const _svgMarkupFoo = null;
 
 <Icon name="foo" />

@@ -1,7 +1,7 @@
-var _iconMarkupFoo = require("../../../../some-path/foo.svg"),
-    _iconMarkupBar = require("../../../../some-path/bar.svg");
+var _svgMarkupFoo = require("../../../../some-path/foo.svg"),
+    _svgMarkupBar = require("../../../../some-path/bar.svg");
 
 <div>
-  <Icon markup={_iconMarkupFoo} />
-  <Icon markup={_iconMarkupBar} />
+  <Icon markup={_svgMarkupFoo} />
+  <Icon markup={_svgMarkupBar} />
 </div>;

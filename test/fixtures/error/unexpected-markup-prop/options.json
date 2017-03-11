@@ -1,9 +1,9 @@
 {
   "plugins": [
     ["../../../../lib/index.js", {
-      "path": "some-path",
+      "root": "some-path",
       "tagName": "Icon"
     }]
   ],
-  "throws": "The \"markup\" prop is for internal use only, please use \"name\" with the icon name instead"
+  "throws": "The \"markup\" prop is for internal use only, please use \"name\" instead"
 }

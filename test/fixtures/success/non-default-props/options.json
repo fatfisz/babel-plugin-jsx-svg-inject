@@ -1,9 +1,9 @@
 {
   "plugins": [
     ["../../../../lib/index.js", {
-      "markupPropName": "html",
-      "namePropName": "type",
-      "path": "./some-path",
+      "markupProp": "html",
+      "nameProp": "type",
+      "root": "./some-path",
       "tagName": "Icon"
     }]
   ]

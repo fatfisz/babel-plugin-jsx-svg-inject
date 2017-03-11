@@ -1,4 +1,0 @@
-{
-  "plugins": ["../../../../lib/index.js"],
-  "throws": "The babel-plugin-jsx-svg-icon-inject plugin requires a \"path\" option"
-}

@@ -1,8 +1,5 @@
 {
   "plugins": [
-    ["../../../../lib/index.js", {
-      "path": "./some-path",
-      "tagName": "Icon"
-    }]
+    "../../../../lib/index.js"
   ]
 }

@@ -3,35 +3,35 @@ import { dirname, isAbsolute, join, relative, resolve } from 'path';
 import babelPluginSyntaxJSX from 'babel-plugin-syntax-jsx';
 
 
-const pluginName = 'babel-plugin-jsx-svg-icon-inject';
+const pluginName = 'babel-plugin-jsx-svg-inject';
 
-function getPath(filename, path, iconName) {
-  const iconPath = join(path, `${iconName}.svg`).replace(/\\/g, '/');
+function getPath(filename, rootPath, svgName) {
+  const path = join(rootPath, `${svgName}.svg`).replace(/\\/g, '/');
 
-  if (isAbsolute(path)) {
-    return iconPath;
+  if (isAbsolute(rootPath)) {
+    return path;
   }
 
-  if (path[0] === '.') {
+  if (rootPath[0] === '.') {
     const scriptDir = dirname(filename);
-    return relative(scriptDir, resolve(iconPath)).replace(/\\/g, '/');
+    return relative(scriptDir, resolve(path)).replace(/\\/g, '/');
   }
 
-  return iconPath;
+  return path;
 }
 
 export default function ({ types }) {
 
-  function getIconMarkupIdentifier(path, state, iconName) {
-    if (this.cache.has(iconName)) {
-      return this.cache.get(iconName);
+  function getMarkupIdentifier(path, state, svgName) {
+    if (this.cache.has(svgName)) {
+      return this.cache.get(svgName);
     }
 
-    const markupId = path.scope.generateUidIdentifier(`icon markup ${iconName}`);
-    const pathToIcon = getPath(this.file.opts.filename, state.opts.path, iconName);
+    const markupId = path.scope.generateUidIdentifier(`svg markup ${svgName}`);
+    const pathToSvg = getPath(this.file.opts.filename, state.opts.root, svgName);
     const requireNode = types.callExpression(
       types.identifier('require'),
-      [types.StringLiteral(pathToIcon)]
+      [types.StringLiteral(pathToSvg)]
     );
 
     path.scope.getProgramParent().push({
@@ -39,41 +39,41 @@ export default function ({ types }) {
       init: requireNode,
     });
 
-    this.cache.set(iconName, markupId);
+    this.cache.set(svgName, markupId);
 
     return markupId;
   }
 
   const attributeVisitor = {
     JSXAttribute(path) {
-      const { markupPropName, namePropName } = this.opts;
+      const { markupProp, nameProp } = this.opts;
 
       if (path.node.ignore || path.parent !== this.parent) {
         return;
       }
 
-      if (types.isJSXIdentifier(path.node.name, { name: markupPropName })) {
+      if (types.isJSXIdentifier(path.node.name, { name: markupProp })) {
         throw path.buildCodeFrameError(
-          `The "${markupPropName}" prop is for internal use only, please use "${namePropName}" with the icon name instead`
+          `The "${markupProp}" prop is for internal use only, please use "${nameProp}" instead`
         );
       }
 
-      if (!types.isJSXIdentifier(path.node.name, { name: namePropName })) {
+      if (!types.isJSXIdentifier(path.node.name, { name: nameProp })) {
         return;
       }
 
       if (this.foundName) {
-        throw path.buildCodeFrameError(`Found a duplicate "${namePropName}" prop`);
+        throw path.buildCodeFrameError(`Found a duplicate "${nameProp}" prop`);
       }
 
       if (!types.isStringLiteral(path.node.value)) {
-        throw path.buildCodeFrameError(`Expected the "${namePropName}" prop to be a string`);
+        throw path.buildCodeFrameError(`Expected the "${nameProp}" prop to be a string`);
       }
 
-      const iconName = path.node.value.value;
-      const markupId = getIconMarkupIdentifier.call(this, path, this, iconName);
+      const svgName = path.node.value.value;
+      const markupId = getMarkupIdentifier.call(this, path, this, svgName);
       const attributeNode = types.JSXAttribute(
-        types.JSXIdentifier(markupPropName),
+        types.JSXIdentifier(markupProp),
         types.JSXExpressionContainer(markupId)
       );
 
@@ -86,25 +86,25 @@ export default function ({ types }) {
 
   const visitor = {
     Program(path, { opts }) {
-      if (!opts.path) {
-        throw path.buildCodeFrameError(`The ${pluginName} plugin requires a "path" option`);
+      if (!opts.root) {
+        opts.root = '.';
       }
 
       if (!opts.tagName) {
-        throw path.buildCodeFrameError(`The ${pluginName} plugin requires a "tagName" option`);
+        opts.tagName = 'SVG';
       }
 
-      if (!opts.namePropName) {
-        opts.namePropName = 'name';
+      if (!opts.nameProp) {
+        opts.nameProp = 'name';
       }
 
-      if (!opts.markupPropName) {
-        opts.markupPropName = 'markup';
+      if (!opts.markupProp) {
+        opts.markupProp = 'markup';
       }
     },
 
     JSXOpeningElement(path) {
-      const { namePropName, tagName } = this.opts;
+      const { nameProp, tagName } = this.opts;
 
       if (!types.isJSXIdentifier(path.node.name, { name: tagName })) {
         return;
@@ -120,7 +120,7 @@ export default function ({ types }) {
 
       if (!childState.foundName) {
         throw path.buildCodeFrameError(
-          `The "${namePropName}" prop required for the ${tagName} component is missing`
+          `The "${nameProp}" prop required for the ${tagName} element is missing`
         );
       }
     },

@@ -1,7 +1,7 @@
 {
   "plugins": [
     ["../../../../lib/index.js", {
-      "path": "/some-path",
+      "root": "/some-path",
       "tagName": "Icon"
     }]
   ]
