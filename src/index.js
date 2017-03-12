@@ -120,7 +120,7 @@ export default function ({ types }) {
 
       if (!childState.foundName) {
         throw path.buildCodeFrameError(
-          `The "${nameProp}" prop required for the ${tagName} element is missing`
+          `The "${nameProp}" prop required for the ${tagName} component is missing`
         );
       }
     },

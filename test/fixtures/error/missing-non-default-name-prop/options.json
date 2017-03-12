@@ -6,5 +6,5 @@
       "tagName": "Icon"
     }]
   ],
-  "throws": "The \"type\" prop required for the Icon element is missing"
+  "throws": "The \"type\" prop required for the Icon component is missing"
 }
