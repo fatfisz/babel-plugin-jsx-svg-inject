@@ -1,3 +1,2 @@
-var _svgContentsSomePathFoo = require("../../../../some-path/foo.svg");
-
+import _svgContentsSomePathFoo from "../../../../some-path/foo.svg";
 <SVG contents={_svgContentsSomePathFoo} />;

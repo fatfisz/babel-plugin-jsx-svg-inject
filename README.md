@@ -9,7 +9,7 @@ This plugin can transform this:
 
 into this:
 ```jsx
-var _svgContentsSomePathEye = require("some-path/eye.svg");
+import _svgContentsSomePathEye from "./some-path/eye.svg";
 
 <SVG contents={_svgContentsSomePathEye} />;
 ```
@@ -34,7 +34,7 @@ Install from the npm and then add this to `.babelrc`:
 ### `path`
 Default: `'.'`
 
-The path that wll be used in the resulting `require` call.
+The path that wll be used in the resulting import declaration.
 
 Relative paths (e.g. `./some-path`), will be resolved using the current working directory.
 

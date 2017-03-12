@@ -1,6 +1,5 @@
-var _svgContentsFoo = require("../../../../some-path/foo.svg"),
-    _svgContentsBar = require("../../../../some-path/bar.svg");
-
+import _svgContentsBar from "../../../../some-path/bar.svg";
+import _svgContentsFoo from "../../../../some-path/foo.svg";
 <div>
   <Icon contents={_svgContentsFoo} />
   <Icon contents={_svgContentsBar} />

@@ -29,15 +29,12 @@ export default function ({ types }) {
 
     const contentsId = path.scope.generateUidIdentifier(`svg contents ${svgName}`);
     const pathToSvg = getPath(this.file.opts.filename, state.opts.root, svgName);
-    const requireNode = types.callExpression(
-      types.identifier('require'),
-      [types.StringLiteral(pathToSvg)]
+    const importNode = types.importDeclaration(
+      [types.importDefaultSpecifier(contentsId)],
+      types.StringLiteral(pathToSvg),
     );
 
-    path.scope.getProgramParent().push({
-      id: contentsId,
-      init: requireNode,
-    });
+    path.scope.getProgramParent().block.body.unshift(importNode);
 
     this.cache.set(svgName, contentsId);
 

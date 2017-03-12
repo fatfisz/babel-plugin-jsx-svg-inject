@@ -1,5 +1,4 @@
-var _svgContentsFoo5 = require("../../../../some-path/foo.svg");
-
+import _svgContentsFoo5 from "../../../../some-path/foo.svg";
 function Foo(_svgContentsFoo) {
   const _svgContentsFoo2 = null;
 
