@@ -46,12 +46,12 @@ Default: `'SVG'`
 
 The name of the React component that will be processed.
 
-### `namePropName`
+### `nameProp`
 Default: `'name'`
 
 The value of the prop with this name will be used for getting the icon path.
 
-### `contentsPropName`
+### `contentsProp`
 Default: `'contents'`
 
 The value of the prop with this name will be used for setting the icon contents.
