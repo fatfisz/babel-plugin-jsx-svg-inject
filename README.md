@@ -34,7 +34,7 @@ Install from the npm and then add this to `.babelrc`:
 
 ## Options
 
-### `path`
+### `root`
 Default: `'.'`
 
 The path that wll be used in the resulting import declaration.
