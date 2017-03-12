@@ -1,1 +1,1 @@
-<Icon name="foo" other=<Other markup="bar" /> />
+<Icon name="foo" other=<Other contents="bar" /> />

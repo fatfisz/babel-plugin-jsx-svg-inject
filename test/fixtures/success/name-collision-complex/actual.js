@@ -1,15 +1,15 @@
-function Foo(_svgMarkupFoo) {
-  const _svgMarkupFoo2 = null;
+function Foo(_svgContentsFoo) {
+  const _svgContentsFoo2 = null;
 
   return <Icon name="foo" />;
 }
 
 const obj = {
   method() {
-    return (function (_svgMarkupFoo3) {
-      const _svgMarkupFoo4 = null;
+    return (function (_svgContentsFoo3) {
+      const _svgContentsFoo4 = null;
 
-      return _svgMarkupFoo4;
+      return _svgContentsFoo4;
     }());
   },
 };

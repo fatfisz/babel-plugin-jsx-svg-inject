@@ -1,3 +1,3 @@
 <Icon name="foo">
-  <Other markup="bar" />
+  <Other contents="bar" />
 </Icon>

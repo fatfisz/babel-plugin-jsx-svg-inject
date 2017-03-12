@@ -22,12 +22,12 @@ function getPath(filename, rootPath, svgName) {
 
 export default function ({ types }) {
 
-  function getMarkupIdentifier(path, state, svgName) {
+  function getContentsIdentifier(path, state, svgName) {
     if (this.cache.has(svgName)) {
       return this.cache.get(svgName);
     }
 
-    const markupId = path.scope.generateUidIdentifier(`svg markup ${svgName}`);
+    const contentsId = path.scope.generateUidIdentifier(`svg contents ${svgName}`);
     const pathToSvg = getPath(this.file.opts.filename, state.opts.root, svgName);
     const requireNode = types.callExpression(
       types.identifier('require'),
@@ -35,26 +35,26 @@ export default function ({ types }) {
     );
 
     path.scope.getProgramParent().push({
-      id: markupId,
+      id: contentsId,
       init: requireNode,
     });
 
-    this.cache.set(svgName, markupId);
+    this.cache.set(svgName, contentsId);
 
-    return markupId;
+    return contentsId;
   }
 
   const attributeVisitor = {
     JSXAttribute(path) {
-      const { markupProp, nameProp } = this.opts;
+      const { contentsProp, nameProp } = this.opts;
 
       if (path.node.ignore || path.parent !== this.parent) {
         return;
       }
 
-      if (types.isJSXIdentifier(path.node.name, { name: markupProp })) {
+      if (types.isJSXIdentifier(path.node.name, { name: contentsProp })) {
         throw path.buildCodeFrameError(
-          `The "${markupProp}" prop is for internal use only, please use "${nameProp}" instead`
+          `The "${contentsProp}" prop is for internal use only, please use "${nameProp}" instead`
         );
       }
 
@@ -71,10 +71,10 @@ export default function ({ types }) {
       }
 
       const svgName = path.node.value.value;
-      const markupId = getMarkupIdentifier.call(this, path, this, svgName);
+      const contentsId = getContentsIdentifier.call(this, path, this, svgName);
       const attributeNode = types.JSXAttribute(
-        types.JSXIdentifier(markupProp),
-        types.JSXExpressionContainer(markupId)
+        types.JSXIdentifier(contentsProp),
+        types.JSXExpressionContainer(contentsId)
       );
 
       path.replaceWith(attributeNode);
@@ -98,8 +98,8 @@ export default function ({ types }) {
         opts.nameProp = 'name';
       }
 
-      if (!opts.markupProp) {
-        opts.markupProp = 'markup';
+      if (!opts.contentsProp) {
+        opts.contentsProp = 'contents';
       }
     },
 

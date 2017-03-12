@@ -1,3 +1,3 @@
-var _svgMarkupFoo = require("../../../../some-path/foo.svg");
+var _svgContentsFoo = require("../../../../some-path/foo.svg");
 
-<Icon markup={_svgMarkupFoo} other=<Other markup="bar" /> />;
+<Icon contents={_svgContentsFoo} other=<Other contents="bar" /> />;

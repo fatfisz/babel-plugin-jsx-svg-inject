@@ -1,1 +1,1 @@
-<Icon markup />
+<Icon contents />

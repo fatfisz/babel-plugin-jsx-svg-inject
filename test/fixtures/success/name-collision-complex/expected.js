@@ -1,17 +1,17 @@
-var _svgMarkupFoo5 = require("../../../../some-path/foo.svg");
+var _svgContentsFoo5 = require("../../../../some-path/foo.svg");
 
-function Foo(_svgMarkupFoo) {
-  const _svgMarkupFoo2 = null;
+function Foo(_svgContentsFoo) {
+  const _svgContentsFoo2 = null;
 
-  return <Icon markup={_svgMarkupFoo5} />;
+  return <Icon contents={_svgContentsFoo5} />;
 }
 
 const obj = {
   method() {
-    return function (_svgMarkupFoo3) {
-      const _svgMarkupFoo4 = null;
+    return function (_svgContentsFoo3) {
+      const _svgContentsFoo4 = null;
 
-      return _svgMarkupFoo4;
+      return _svgContentsFoo4;
     }();
   }
 };

@@ -5,5 +5,5 @@
       "tagName": "Icon"
     }]
   ],
-  "throws": "The \"markup\" prop is for internal use only, please use \"name\" instead"
+  "throws": "The \"contents\" prop is for internal use only, please use \"name\" instead"
 }
