@@ -14,7 +14,10 @@ import _svgContentsSomePathEye from "./some-path/eye.svg";
 <SVG contents={_svgContentsSomePathEye} />;
 ```
 
-It does not contain any implementation of a component that receives the contents of the SVG image or a loader for those images.
+The main benefit here is that explicit imports for the images are not needed and instead a single component can be used.
+
+The plugin does not contain any implementation of the component that receives the contents of the SVG image or a loader for those images.
+
 Here are some Webpack loaders that could be used with this plugin:
 * [react-svg-loader](https://github.com/boopathi/react-svg-loader)
 
