@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "pretest": "rollup -c",
+    "pretest": "yarn build",
     "test": "mocha"
   },
   "dependencies": {
