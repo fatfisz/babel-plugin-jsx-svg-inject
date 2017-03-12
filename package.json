@@ -1,12 +1,13 @@
 {
-  "name": "babel-plugin-jsx-svg-icon-inject",
+  "name": "babel-plugin-jsx-svg-inject",
+  "description": "Add SVG file imports for React components",
   "version": "1.0.0",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
-  "homepage": "https://github.com/fatfisz/babel-plugin-jsx-icon-inject",
-  "repository": "https://github.com/fatfisz/babel-plugin-jsx-icon-inject.git",
+  "homepage": "https://github.com/fatfisz/babel-plugin-jsx-svg-inject",
+  "repository": "https://github.com/fatfisz/babel-plugin-jsx-svg-inject.git",
   "author": {
     "name": "FatFisz",
     "url": "https://github.com/fatfisz"

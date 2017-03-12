@@ -1,18 +1,22 @@
-# babel-plugin-jsx-svg-icon-inject
+# babel-plugin-jsx-svg-inject
 
-This plugin that translates this:
+> Add SVG file imports for React components
+
+This plugin can transform this:
 ```jsx
-<Icon name="eye" />
+<SVG name="eye" />
 ```
 
 into this:
 ```jsx
-var _iconMarkupEye = require("some-path/eye.svg");
+var _svgContentsSomePathEye = require("some-path/eye.svg");
 
-<Icon markup={_iconMarkupEye} />;
+<SVG contents={_svgContentsSomePathEye} />;
 ```
 
-It does not contain any implementation of the `Icon` component or a loader for the svg icons.
+It does not contain any implementation of a component that receives the contents of the SVG image or a loader for those images.
+Here are some Webpack loaders that could be used with this plugin:
+* [react-svg-loader](https://github.com/boopathi/react-svg-loader)
 
 ## Usage
 
@@ -20,37 +24,34 @@ Install from the npm and then add this to `.babelrc`:
 ```json
 {
   "plugins": [
-    ["jsx-svg-icon-inject", {
-      "path": "some-path",
-      "tagName": "Icon"
-    }]
+    "jsx-svg-inject"
   ]
 }
 ```
 
 ## Options
 
-### `path` (required)
+### `path`
+Default: `'.'`
 
-If the path is absolute, it will stay as is in `require`.
+The path that wll be used in the resulting `require` call.
 
-If the path is relative (e.g. `./some-path`), it will be resolved using the current working directory, and the path in `require` will be relative wrt the transpiled script.
+Relative paths (e.g. `./some-path`), will be resolved using the current working directory.
 
-Else the path is treated as a "package name" and is left as is.
+### `tagName`
+Default: `'SVG'`
 
-### `tagName` (required)
-
-Only the tags that have this name will be processed.
+The name of the React component that will be processed.
 
 ### `namePropName`
 Default: `'name'`
 
 The value of the prop with this name will be used for getting the icon path.
 
-### `markupPropName`
-Default: `'markup'`
+### `contentsPropName`
+Default: `'contents'`
 
-The value of the prop with this name will be used for setting the icon markup.
+The value of the prop with this name will be used for setting the icon contents.
 
 ## License
 
