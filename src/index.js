@@ -34,7 +34,7 @@ export default function ({ types }) {
       types.StringLiteral(pathToSvg),
     );
 
-    path.scope.getProgramParent().block.body.unshift(importNode);
+    path.scope.getProgramParent().path.unshiftContainer('body', importNode);
 
     this.cache.set(svgName, contentsId);
 
