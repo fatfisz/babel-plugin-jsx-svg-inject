@@ -48,10 +48,6 @@ export default function ({ types }) {
         opts.root = '.';
       }
 
-      if (!opts.tagName) {
-        opts.tagName = 'SVG';
-      }
-
       if (!opts.nameProp) {
         opts.nameProp = 'name';
       }

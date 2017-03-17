@@ -2,8 +2,7 @@
   "plugins": [
     ["../../../../lib/index.js", {
       "nameProp": "type",
-      "root": "some-path",
-      "tagName": "Icon"
+      "root": "some-path"
     }]
   ],
   "throws": "Expected the \"type\" prop to be a string"

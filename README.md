@@ -41,11 +41,6 @@ The path that wll be used in the resulting import declaration.
 
 Relative paths (e.g. `./some-path`), will be resolved using the current working directory.
 
-### `tagName`
-Default: `'SVG'`
-
-The name of the React component that will be processed.
-
 ### `nameProp`
 Default: `'name'`
 
