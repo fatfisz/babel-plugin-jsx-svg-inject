@@ -22,64 +22,25 @@ function getPath(filename, rootPath, svgName) {
 
 export default function ({ types }) {
 
-  function getContentsIdentifier(path, state, svgName) {
-    if (this.cache.has(svgName)) {
-      return this.cache.get(svgName);
+  function getContentsIdentifier(path, { cache, file, opts }) {
+    const svgName = path.node.value.value;
+
+    if (cache.has(svgName)) {
+      return cache.get(svgName);
     }
 
     const contentsId = path.scope.generateUidIdentifier(`svg contents ${svgName}`);
-    const pathToSvg = getPath(this.file.opts.filename, state.opts.root, svgName);
+    const pathToSvg = getPath(file.opts.filename, opts.root, svgName);
     const importNode = types.importDeclaration(
       [types.importDefaultSpecifier(contentsId)],
       types.StringLiteral(pathToSvg),
     );
-
     path.scope.getProgramParent().path.unshiftContainer('body', importNode);
 
-    this.cache.set(svgName, contentsId);
+    cache.set(svgName, contentsId);
 
     return contentsId;
   }
-
-  const attributeVisitor = {
-    JSXAttribute(path) {
-      const { contentsProp, nameProp } = this.opts;
-
-      if (path.node.ignore || path.parent !== this.parent) {
-        return;
-      }
-
-      if (types.isJSXIdentifier(path.node.name, { name: contentsProp })) {
-        throw path.buildCodeFrameError(
-          `The "${contentsProp}" prop is for internal use only, please use "${nameProp}" instead`
-        );
-      }
-
-      if (!types.isJSXIdentifier(path.node.name, { name: nameProp })) {
-        return;
-      }
-
-      if (this.foundName) {
-        throw path.buildCodeFrameError(`Found a duplicate "${nameProp}" prop`);
-      }
-
-      if (!types.isStringLiteral(path.node.value)) {
-        throw path.buildCodeFrameError(`Expected the "${nameProp}" prop to be a string`);
-      }
-
-      const svgName = path.node.value.value;
-      const contentsId = getContentsIdentifier.call(this, path, this, svgName);
-      const attributeNode = types.JSXAttribute(
-        types.JSXIdentifier(contentsProp),
-        types.JSXExpressionContainer(contentsId)
-      );
-
-      path.replaceWith(attributeNode);
-
-      attributeNode.ignore = true;
-      this.foundName = true;
-    },
-  };
 
   const visitor = {
     Program(path, { opts }) {
@@ -100,31 +61,29 @@ export default function ({ types }) {
       }
     },
 
-    JSXOpeningElement(path) {
-      const { nameProp, tagName } = this.opts;
+    JSXAttribute(path, state) {
+      const { contentsProp, nameProp } = state.opts;
 
-      if (!types.isJSXIdentifier(path.node.name, { name: tagName })) {
+      if (!types.isJSXIdentifier(path.node.name, { name: nameProp })) {
         return;
       }
 
-      const childState = {
-        ...this,
-        foundName: false,
-        parent: path.node,
-      };
-
-      path.traverse(attributeVisitor, childState);
-
-      if (!childState.foundName) {
-        throw path.buildCodeFrameError(
-          `The "${nameProp}" prop required for the ${tagName} component is missing`
-        );
+      if (!types.isStringLiteral(path.node.value)) {
+        throw path.buildCodeFrameError(`Expected the "${nameProp}" prop to be a string`);
       }
+
+      const contentsId = getContentsIdentifier(path, state);
+      const attributeNode = types.JSXAttribute(
+        types.JSXIdentifier(contentsProp),
+        types.JSXExpressionContainer(contentsId)
+      );
+
+      path.replaceWith(attributeNode);
     },
   };
 
   return {
-    pre() {
+    pre(...args) {
       this.cache = new Map();
     },
 
