@@ -1,8 +1,8 @@
 <div>
-  <Icon name="foo" />
-  <Icon name="foo" />
-  <Icon name="bar" />
-  <Icon name="foo" />
-  <Icon name="baz" />
-  <Icon name="bar" />
+  <Icon svgName="foo" />
+  <Icon svgName="foo" />
+  <Icon svgName="bar" />
+  <Icon svgName="foo" />
+  <Icon svgName="baz" />
+  <Icon svgName="bar" />
 </div>

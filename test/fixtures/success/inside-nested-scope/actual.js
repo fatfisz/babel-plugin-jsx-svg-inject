@@ -1,5 +1,5 @@
 function Foo() {
   return () => [
-    <Icon name="foo" />
+    <Icon svgName="foo" />
   ];
 }

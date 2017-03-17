@@ -1,1 +1,1 @@
-<Icon name="foo" />
+<Icon svgName="foo" />

@@ -1,4 +1,4 @@
 <div>
-  <Icon name="foo" />
-  <Icon name="bar" />
+  <Icon svgName="foo" />
+  <Icon svgName="bar" />
 </div>

@@ -1,3 +1,3 @@
-<Icon name="foo">
-  <Other contents="bar" />
+<Icon svgName="foo">
+  <Other svgContents="bar" />
 </Icon>

@@ -1,1 +1,1 @@
-<Icon name={'name'} />
+<Icon svgName={'name'} />

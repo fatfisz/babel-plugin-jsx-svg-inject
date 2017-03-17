@@ -4,5 +4,5 @@
       "root": "some-path"
     }]
   ],
-  "throws": "Expected the \"name\" prop to be a string"
+  "throws": "Expected the \"svgName\" prop to be a string"
 }

@@ -1,1 +1,1 @@
-<SVG name="some-path/foo" />
+<SVG svgName="some-path/foo" />

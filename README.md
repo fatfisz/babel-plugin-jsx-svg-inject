@@ -4,14 +4,13 @@
 
 This plugin can transform this:
 ```jsx
-<SVG name="eye" />
+<Icon svgName="eye" />
 ```
 
 into this:
 ```jsx
 import _svgContentsSomePathEye from "./some-path/eye.svg";
-
-<SVG contents={_svgContentsSomePathEye} />;
+<Icon svgContents={_svgContentsSomePathEye} />;
 ```
 
 The main benefit here is that explicit imports for the images are not needed and instead a single component can be used.
@@ -42,12 +41,12 @@ The path that wll be used in the resulting import declaration.
 Relative paths (e.g. `./some-path`), will be resolved using the current working directory.
 
 ### `nameProp`
-Default: `'name'`
+Default: `'svgName'`
 
 The value of the prop with this name will be used for getting the icon path.
 
 ### `contentsProp`
-Default: `'contents'`
+Default: `'svgContents'`
 
 The value of the prop with this name will be used for setting the icon contents.
 

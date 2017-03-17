@@ -1,1 +1,1 @@
-<Icon type={'name'} />
+<Icon name={'name'} />

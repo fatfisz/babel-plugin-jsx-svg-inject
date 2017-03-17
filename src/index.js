@@ -49,11 +49,11 @@ export default function ({ types }) {
       }
 
       if (!opts.nameProp) {
-        opts.nameProp = 'name';
+        opts.nameProp = 'svgName';
       }
 
       if (!opts.contentsProp) {
-        opts.contentsProp = 'contents';
+        opts.contentsProp = 'svgContents';
       }
     },
 

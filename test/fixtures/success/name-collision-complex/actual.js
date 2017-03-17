@@ -1,7 +1,7 @@
 function Foo(_svgContentsFoo) {
   const _svgContentsFoo2 = null;
 
-  return <Icon name="foo" />;
+  return <Icon svgName="foo" />;
 }
 
 const obj = {

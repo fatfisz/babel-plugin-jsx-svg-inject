@@ -1,1 +1,1 @@
-<Icon name="foo" other={<Other contents="bar" />} />
+<Icon svgName="foo" other={<Other svgContents="bar" />} />

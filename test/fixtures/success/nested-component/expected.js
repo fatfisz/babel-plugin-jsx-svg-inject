@@ -1,4 +1,4 @@
 import _svgContentsFoo from "../../../../some-path/foo.svg";
-<Icon contents={_svgContentsFoo}>
-  <Other contents="bar" />
+<Icon svgContents={_svgContentsFoo}>
+  <Other svgContents="bar" />
 </Icon>;
