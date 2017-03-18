@@ -1,4 +1,4 @@
-import _svgContentsFoo2 from "../../../../some-path/foo.svg";
-const _svgContentsFoo = null;
+import _svgContentsSomePathFooSvg2 from "../../../../some-path/foo.svg";
+const _svgContentsSomePathFooSvg = null;
 
-<Icon svgContents={_svgContentsFoo2} />;
+<Icon svgContents={_svgContentsSomePathFooSvg2} />;

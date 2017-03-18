@@ -1,15 +1,15 @@
-function Foo(_svgContentsFoo) {
-  const _svgContentsFoo2 = null;
+function Foo(_svgContentsSomePathFooSvg) {
+  const _svgContentsSomePathFooSvg2 = null;
 
   return <Icon svgName="foo" />;
 }
 
 const obj = {
   method() {
-    return (function (_svgContentsFoo3) {
-      const _svgContentsFoo4 = null;
+    return (function (_svgContentsSomePathFooSvg3) {
+      const _svgContentsSomePathFooSvg4 = null;
 
-      return _svgContentsFoo4;
+      return _svgContentsSomePathFooSvg4;
     }());
   },
 };

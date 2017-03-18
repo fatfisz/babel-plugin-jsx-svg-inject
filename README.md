@@ -9,8 +9,8 @@ This plugin can transform this:
 
 into this:
 ```jsx
-import _svgContentsSomePathEye from "./some-path/eye.svg";
-<Icon svgContents={_svgContentsSomePathEye} />;
+import _svgContentsSomePathEyeSvg from "./some-path/eye.svg";
+<Icon svgContents={_svgContentsSomePathEyeSvg} />;
 ```
 
 The main benefit here is that explicit imports for the images are not needed and instead a single component can be used.

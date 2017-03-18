@@ -1,6 +1,6 @@
-import _svgContentsBar from "../../../../some-path/bar.svg";
-import _svgContentsFoo from "../../../../some-path/foo.svg";
+import _svgContentsSomePathBarSvg from "../../../../some-path/bar.svg";
+import _svgContentsSomePathFooSvg from "../../../../some-path/foo.svg";
 <div>
-  <Icon svgContents={_svgContentsFoo} />
-  <Icon svgContents={_svgContentsBar} />
+  <Icon svgContents={_svgContentsSomePathFooSvg} />
+  <Icon svgContents={_svgContentsSomePathBarSvg} />
 </div>;

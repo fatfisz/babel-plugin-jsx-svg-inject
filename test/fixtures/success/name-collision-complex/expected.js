@@ -1,16 +1,16 @@
-import _svgContentsFoo5 from "../../../../some-path/foo.svg";
-function Foo(_svgContentsFoo) {
-  const _svgContentsFoo2 = null;
+import _svgContentsSomePathFooSvg5 from "../../../../some-path/foo.svg";
+function Foo(_svgContentsSomePathFooSvg) {
+  const _svgContentsSomePathFooSvg2 = null;
 
-  return <Icon svgContents={_svgContentsFoo5} />;
+  return <Icon svgContents={_svgContentsSomePathFooSvg5} />;
 }
 
 const obj = {
   method() {
-    return function (_svgContentsFoo3) {
-      const _svgContentsFoo4 = null;
+    return function (_svgContentsSomePathFooSvg3) {
+      const _svgContentsSomePathFooSvg4 = null;
 
-      return _svgContentsFoo4;
+      return _svgContentsSomePathFooSvg4;
     }();
   }
 };

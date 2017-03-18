@@ -24,20 +24,20 @@ export default function ({ types }) {
 
   function getContentsIdentifier(path, { cache, file, opts }) {
     const svgName = path.node.value.value;
+    const pathToSvg = getPath(file.opts.filename, opts.root, svgName);
 
-    if (cache.has(svgName)) {
-      return cache.get(svgName);
+    if (cache.has(pathToSvg)) {
+      return cache.get(pathToSvg);
     }
 
-    const contentsId = path.scope.generateUidIdentifier(`svg contents ${svgName}`);
-    const pathToSvg = getPath(file.opts.filename, opts.root, svgName);
+    const contentsId = path.scope.generateUidIdentifier(`svg contents ${pathToSvg}`);
     const importNode = types.importDeclaration(
       [types.importDefaultSpecifier(contentsId)],
       types.StringLiteral(pathToSvg),
     );
     path.scope.getProgramParent().path.unshiftContainer('body', importNode);
 
-    cache.set(svgName, contentsId);
+    cache.set(pathToSvg, contentsId);
 
     return contentsId;
   }

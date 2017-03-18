@@ -1,2 +1,2 @@
-import _svgContentsFoo from "../../../../some-path/foo.svg";
-<Icon svgContents={_svgContentsFoo} other={<Other svgContents="bar" />} />;
+import _svgContentsSomePathFooSvg from "../../../../some-path/foo.svg";
+<Icon svgContents={_svgContentsSomePathFooSvg} other={<Other svgContents="bar" />} />;
