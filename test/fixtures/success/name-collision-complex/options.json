@@ -1,7 +1,0 @@
-{
-  "plugins": [
-    ["../../../../lib/index.js", {
-      "root": "./some-path"
-    }]
-  ]
-}
