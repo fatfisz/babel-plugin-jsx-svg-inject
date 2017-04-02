@@ -22,7 +22,7 @@ function getPath(filename, rootPath, svgName) {
 
 export default function ({ types }) {
 
-  function getContentsIdentifier(path, { cache, file, opts }) {
+  function getContentsIdentifier(path, { cache, file, opts, types }) {
     const svgName = path.node.value.value;
     const pathToSvg = getPath(file.opts.filename, opts.root, svgName);
 
@@ -58,6 +58,7 @@ export default function ({ types }) {
     },
 
     JSXAttribute(path, state) {
+      const { types } = state;
       const { contentsProp, nameProp } = state.opts;
 
       if (!types.isJSXIdentifier(path.node.name, { name: nameProp })) {
@@ -81,6 +82,7 @@ export default function ({ types }) {
   return {
     pre(...args) {
       this.cache = new Map();
+      this.types = types;
     },
 
     inherits: babelPluginSyntaxJSX,
