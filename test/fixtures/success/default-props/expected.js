@@ -1,2 +1,2 @@
 import _svgContentsSomePathFooSvg from "../../../../some-path/foo.svg";
-<SVG svgContents={_svgContentsSomePathFooSvg} />;
+<SVG svgName="some-path/foo" svgContents={_svgContentsSomePathFooSvg} />;

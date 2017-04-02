@@ -19,5 +19,5 @@ export default function JSXAttribute(path, state) {
     types.JSXExpressionContainer(contentsId)
   );
 
-  path.replaceWith(attributeNode);
+  path.insertAfter(attributeNode);
 }

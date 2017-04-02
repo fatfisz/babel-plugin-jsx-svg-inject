@@ -2,7 +2,7 @@ import _svgContentsSomePathFooSvg5 from "../../../../some-path/foo.svg";
 function Foo(_svgContentsSomePathFooSvg) {
   const _svgContentsSomePathFooSvg2 = null;
 
-  return <Icon svgContents={_svgContentsSomePathFooSvg5} />;
+  return <Icon svgName="foo" svgContents={_svgContentsSomePathFooSvg5} />;
 }
 
 const obj = {

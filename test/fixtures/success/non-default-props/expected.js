@@ -1,2 +1,2 @@
 import _svgContentsSomePathFooSvg from "../../../../some-path/foo.svg";
-<Icon html={_svgContentsSomePathFooSvg} />;
+<Icon type="foo" html={_svgContentsSomePathFooSvg} />;

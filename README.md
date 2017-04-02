@@ -10,7 +10,7 @@ This plugin can transform this:
 into this:
 ```jsx
 import _svgContentsSomePathEyeSvg from "./some-path/eye.svg";
-<Icon svgContents={_svgContentsSomePathEyeSvg} />;
+<Icon svgName="eye" svgContents={_svgContentsSomePathEyeSvg} />;
 ```
 
 The main benefit here is that explicit imports for the images are not needed and instead a single component can be used.
@@ -23,7 +23,7 @@ Here are some Webpack loaders that could be used with this plugin:
 ## How does it work?
 
 The plugin searches for a specific prop on JSX Elements (by default it's `'svgName'`) and adds an import to the file for each one.
-The exported value is put in a replacement prop (by default it's `'svgContents'`) and the original prop is removed.
+The exported value is put in an additional prop (by default it's `'svgContents'`).
 
 The path in the import will be either relative to the processed file or an absolute one (depends on the `root` option).
 
