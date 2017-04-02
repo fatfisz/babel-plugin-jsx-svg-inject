@@ -43,20 +43,6 @@ export default function ({ types }) {
   }
 
   const visitor = {
-    Program(path, { opts }) {
-      if (!opts.root) {
-        opts.root = '.';
-      }
-
-      if (!opts.nameProp) {
-        opts.nameProp = 'svgName';
-      }
-
-      if (!opts.contentsProp) {
-        opts.contentsProp = 'svgContents';
-      }
-    },
-
     JSXAttribute(path, state) {
       const { types } = state;
       const { contentsProp, nameProp } = state.opts;
@@ -81,8 +67,22 @@ export default function ({ types }) {
 
   return {
     pre() {
+      const { opts } = this;
+
       this.cache = new Map();
       this.types = types;
+
+      if (!opts.root) {
+        opts.root = '.';
+      }
+
+      if (!opts.nameProp) {
+        opts.nameProp = 'svgName';
+      }
+
+      if (!opts.contentsProp) {
+        opts.contentsProp = 'svgContents';
+      }
     },
 
     inherits: babelPluginSyntaxJSX,
