@@ -1,2 +1,2 @@
-import _svgContentsSomePathFooSvg from "../../../../some-path/foo.svg";
-<SVG svgName="some-path/foo" svgContents={_svgContentsSomePathFooSvg} />;
+var _svgContents = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\">\n  <rect x=\"10\" y=\"10\" width=\"100\" height=\"100\" />\n</svg>\n";
+<SVG svgName="some-path/foo" svgContents={_svgContents} />;

@@ -1,3 +1,3 @@
-const _svgContentsSomePathFooSvg = null;
+const _svgContents = null;
 
 <Icon svgName="foo" />

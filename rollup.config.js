@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel';
 
 
 const pkg = require('./package.json');
-const external = ['path', ...Object.keys(pkg.dependencies)];
+const external = ['fs', 'path', ...Object.keys(pkg.dependencies)];
 
 export default {
   entry: 'src/index.js',

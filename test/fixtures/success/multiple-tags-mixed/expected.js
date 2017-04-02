@@ -1,11 +1,11 @@
-import _svgContentsSomePathBazSvg from "../../../../some-path/baz.svg";
-import _svgContentsSomePathBarSvg from "../../../../some-path/bar.svg";
-import _svgContentsSomePathFooSvg from "../../../../some-path/foo.svg";
+var _svgContents = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\">\n  <rect x=\"10\" y=\"10\" width=\"100\" height=\"100\" />\n</svg>\n",
+    _svgContents2 = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\">\n  <circle cx=\"100\" cy=\"100\" r=\"100\"/>\n</svg>\n",
+    _svgContents3 = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\" viewBox=\"0 0 120 120\">\n  <ellipse cx=\"60\" cy=\"60\" rx=\"50\" ry=\"25\" />\n</svg>\n";
 <div>
-  <Icon svgName="foo" svgContents={_svgContentsSomePathFooSvg} />
-  <Icon svgName="foo" svgContents={_svgContentsSomePathFooSvg} />
-  <Icon svgName="bar" svgContents={_svgContentsSomePathBarSvg} />
-  <Icon svgName="foo" svgContents={_svgContentsSomePathFooSvg} />
-  <Icon svgName="baz" svgContents={_svgContentsSomePathBazSvg} />
-  <Icon svgName="bar" svgContents={_svgContentsSomePathBarSvg} />
+  <Icon svgName="foo" svgContents={_svgContents} />
+  <Icon svgName="foo" svgContents={_svgContents} />
+  <Icon svgName="bar" svgContents={_svgContents2} />
+  <Icon svgName="foo" svgContents={_svgContents} />
+  <Icon svgName="baz" svgContents={_svgContents3} />
+  <Icon svgName="bar" svgContents={_svgContents2} />
 </div>;

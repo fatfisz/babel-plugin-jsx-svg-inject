@@ -1,35 +1,33 @@
-import { dirname, isAbsolute, join, relative, resolve } from 'path';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 
-function getPath(filename, rootPath, svgName) {
-  const path = join(rootPath, `${svgName}.svg`).replace(/\\/g, '/');
-
-  if (isAbsolute(rootPath)) {
-    return path;
-  }
-
-  if (rootPath[0] === '.') {
-    const scriptDir = dirname(filename);
-    return relative(scriptDir, resolve(path)).replace(/\\/g, '/');
-  }
-
-  return path;
+function getPath(rootPath, svgName) {
+  return join(rootPath, `${svgName}.svg`);
 }
 
-export default function getContentsIdentifier(path, { cache, file, opts, types }) {
+function getSource(path, pathToSvg) {
+  try {
+    return readFileSync(pathToSvg, 'utf8');
+  } catch (err) {
+    throw path.buildCodeFrameError(`File not found: ${pathToSvg}`);
+  }
+}
+
+export default function getContentsIdentifier(path, { cache,  opts, types }) {
   const svgName = path.node.value.value;
-  const pathToSvg = getPath(file.opts.filename, opts.root, svgName);
+  const pathToSvg = getPath(opts.root, svgName);
 
   if (cache.has(pathToSvg)) {
     return cache.get(pathToSvg);
   }
 
-  const contentsId = path.scope.generateUidIdentifier(`svg contents ${pathToSvg}`);
-  const importNode = types.importDeclaration(
-    [types.importDefaultSpecifier(contentsId)],
-    types.StringLiteral(pathToSvg),
-  );
-  path.scope.getProgramParent().path.unshiftContainer('body', importNode);
+  const svgContents = getSource(path, pathToSvg);
+  const contentsId = path.scope.generateUidIdentifier(`svg contents`);
+  path.scope.getProgramParent().push({
+    id: contentsId,
+    init: types.StringLiteral(svgContents),
+  });
 
   cache.set(pathToSvg, contentsId);
 
