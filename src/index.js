@@ -80,7 +80,7 @@ export default function ({ types }) {
   };
 
   return {
-    pre(...args) {
+    pre() {
       this.cache = new Map();
       this.types = types;
     },
