@@ -14,7 +14,7 @@ function getSource(path, pathToSvg) {
   }
 }
 
-export default function getContentsIdentifier(path, { cache,  opts, types }) {
+export default function getContentsIdentifier(path, { cache, opts, types }) {
   const svgName = path.node.value.value;
   const pathToSvg = getPath(opts.root, svgName);
 
