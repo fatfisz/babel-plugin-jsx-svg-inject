@@ -12,7 +12,13 @@ export default {
         ['transform-object-rest-spread', { useBuiltIns: true }],
       ],
       presets: [
-        ['es2015', { modules: false }],
+        ['env', {
+          targets: {
+            node: 4,
+          },
+          loose: true,
+          modules: false,
+        }],
       ],
     }),
   ],
@@ -22,5 +28,6 @@ export default {
       dest: pkg.main,
       format: 'cjs',
     },
-  ]
+  ],
+  interop: false,
 };
