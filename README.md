@@ -9,7 +9,7 @@ This plugin can transform this:
 
 into this:
 ```jsx
-var _svgContents = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\">\n  <circle cx=\"100\" cy=\"100\" r=\"100\"/>\n</svg>\n";
+var _svgContents = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\">\n  <circle cx=\"100\" cy=\"100\" r=\"100\"/>\n</svg>";
 <Icon svgName="eye" svgContents={_svgContents} />;
 ```
 
