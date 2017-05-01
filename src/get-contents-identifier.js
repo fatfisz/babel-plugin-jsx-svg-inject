@@ -35,7 +35,7 @@ function getActualContentsIdentifier({ scope }, { types }, contents) {
 
   scope.getProgramParent().push({
     id: contentsId,
-    init: types.StringLiteral(contents),
+    init: types.StringLiteral(contents.trim()),
   });
 
   return contentsId;
