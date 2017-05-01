@@ -16,6 +16,7 @@ var _svgContents = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 
 The main benefit here is that explicit imports for the images are not needed and instead a single component can be used.
 
 The plugin includes the contents of the file as a string, so there is no need for additional plugins or loaders.
+There is also an option to have the imports added instead (`useImports`).
 
 ## How does it work?
 
@@ -26,10 +27,11 @@ The path in the import will be either relative to the processed file or an absol
 
 ### Upgrading to v.4
 
-The plugin now inlines the source of the image.
+The plugin now inlines the source of the image by default.
 Previously another plugin or loader was needed for that (an import was added instead), which could be quite bothersome.
 
 The upgrade should be painless if no complicated logic was used for importing the files.
+In case the imports are preferred, please use the `useImports` option.
 
 ### Upgrading to v.3
 
@@ -82,6 +84,12 @@ the output might be something similar to this:
 var _svgContents = "\n  <rect x=\"10\" y=\"10\" width=\"100\" height=\"100\" />\n";
 <SVG svgName="some-path/foo" svgContents={_svgContents} viewBox="0 0 120 120" height="120" width="120" xmlns="http://www.w3.org/2000/svg" />;
 ```
+
+### `useImports`
+Default: `false`
+
+If `true`, an import will be added instead of inlining the content.
+This was the default behavior before v.4.
 
 ## License
 

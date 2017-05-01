@@ -27,6 +27,7 @@ export default function ({ types }) {
       }
 
       opts.unwrap = Boolean(opts.unwrap);
+      opts.useImports = Boolean(opts.useImports);
     },
 
     inherits: babelPluginSyntaxJSX,

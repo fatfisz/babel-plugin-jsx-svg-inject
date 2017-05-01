@@ -1,4 +1,4 @@
-import getContentsIdentifier from './get-contents-identifier';
+import getProps from './get-props';
 
 
 export default function JSXAttribute(path, state) {
@@ -13,7 +13,7 @@ export default function JSXAttribute(path, state) {
     throw path.buildCodeFrameError(`Expected the "${nameProp}" prop to be a string`);
   }
 
-  const props = getContentsIdentifier(path, state);
+  const props = getProps(path, state);
   props.forEach((prop) => {
     path.insertAfter(prop);
   });
