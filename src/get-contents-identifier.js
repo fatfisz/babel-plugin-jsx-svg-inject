@@ -1,6 +1,8 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+import unwrap from './unwrap';
+
 
 function getPath(rootPath, svgName) {
   return join(rootPath, `${svgName}.svg`);
@@ -14,22 +16,49 @@ function getSource(path, pathToSvg) {
   }
 }
 
-export default function getContentsIdentifier(path, { cache, opts, types }) {
+function getPropsFromSource(path, pathToSvg, state) {
+  const contents = getSource(path, pathToSvg);
+
+  if (!state.opts.unwrap) {
+    return { contents };
+  }
+
+  try {
+    return unwrap(path, contents, state);
+  } catch (error) {
+    throw path.buildCodeFrameError(`File could not be unwrapped: ${pathToSvg}`);
+  }
+}
+
+function getActualContentsIdentifier({ scope }, { types }, contents) {
+  const contentsId = scope.generateUidIdentifier(`svg contents`);
+
+  scope.getProgramParent().push({
+    id: contentsId,
+    init: types.StringLiteral(contents),
+  });
+
+  return contentsId;
+}
+
+export default function getContentsIdentifier(path, state) {
+  const { cache, opts, types } = state;
+  const { contentsProp, root } = opts;
   const svgName = path.node.value.value;
-  const pathToSvg = getPath(opts.root, svgName);
+  const pathToSvg = getPath(root, svgName);
 
   if (cache.has(pathToSvg)) {
     return cache.get(pathToSvg);
   }
 
-  const svgContents = getSource(path, pathToSvg);
-  const contentsId = path.scope.generateUidIdentifier(`svg contents`);
-  path.scope.getProgramParent().push({
-    id: contentsId,
-    init: types.StringLiteral(svgContents),
-  });
+  const { contents, props = [] } = getPropsFromSource(path, pathToSvg, state);
+  const contentsId = getActualContentsIdentifier(path, state, contents);
 
-  cache.set(pathToSvg, contentsId);
+  props.push(types.JSXAttribute(
+    types.JSXIdentifier(contentsProp),
+    types.JSXExpressionContainer(contentsId),
+  ));
+  cache.set(pathToSvg, props);
 
-  return contentsId;
+  return props;
 }

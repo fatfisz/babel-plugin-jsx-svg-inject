@@ -25,6 +25,8 @@ export default function ({ types }) {
       if (!opts.contentsProp) {
         opts.contentsProp = 'svgContents';
       }
+
+      opts.unwrap = Boolean(opts.unwrap);
     },
 
     inherits: babelPluginSyntaxJSX,

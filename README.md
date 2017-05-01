@@ -63,6 +63,22 @@ Default: `'svgContents'`
 
 The value of the prop with this name will be used for setting the SVG contents.
 
+### `unwrap`
+Default: `false`
+
+If set to `true`, the `<svg>` tag will be stripped from the images, and the attributes from the tag will be passed to the resulting element.
+
+For example, with this option enabled and a file like this:
+```jsx
+<SVG svgName="some-path/foo" />
+```
+
+the output might be something similar to this:
+```jsx
+var _svgContents = "\n  <rect x=\"10\" y=\"10\" width=\"100\" height=\"100\" />\n";
+<SVG svgName="some-path/foo" svgContents={_svgContents} viewBox="0 0 120 120" height="120" width="120" xmlns="http://www.w3.org/2000/svg" />;
+```
+
 ## License
 
 Copyright (c) 2017 Rafał Ruciński. Licensed under the MIT license.

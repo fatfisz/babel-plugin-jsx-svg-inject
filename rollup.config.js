@@ -16,6 +16,9 @@ export default {
           targets: {
             node: 4,
           },
+          exclude: [
+            'transform-regenerator',
+          ],
           loose: true,
           modules: false,
         }],
