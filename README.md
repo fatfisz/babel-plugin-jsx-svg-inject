@@ -9,16 +9,13 @@ This plugin can transform this:
 
 into this:
 ```jsx
-import _svgContentsSomePathEyeSvg from "./some-path/eye.svg";
-<Icon svgName="eye" svgContents={_svgContentsSomePathEyeSvg} />;
+var _svgContents = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 200 200\">\n  <circle cx=\"100\" cy=\"100\" r=\"100\"/>\n</svg>\n";
+<Icon svgName="eye" svgContents={_svgContents} />;
 ```
 
 The main benefit here is that explicit imports for the images are not needed and instead a single component can be used.
 
-The plugin does not contain any implementation of the component that receives the contents of the SVG image or a loader for those images.
-
-Here are some Webpack loaders that could be used with this plugin:
-* [react-svg-loader](https://github.com/boopathi/react-svg-loader)
+The plugin includes the contents of the file as a string, so there is no need for additional plugins or loaders.
 
 ## How does it work?
 
@@ -27,7 +24,14 @@ The exported value is put in an additional prop (by default it's `'svgContents'`
 
 The path in the import will be either relative to the processed file or an absolute one (depends on the `root` option).
 
-### Note about v.2
+### Upgrading to v.4
+
+The plugin now inlines the source of the image.
+Previously another plugin or loader was needed for that (an import was added instead), which could be quite bothersome.
+
+The upgrade should be painless if no complicated logic was used for importing the files.
+
+### Upgrading to v.3
 
 In version 2.x and below the plugin looked for a JSX element with a specific name.
 This was less flexible - there was no simple way of having SVG injected into different tags.
