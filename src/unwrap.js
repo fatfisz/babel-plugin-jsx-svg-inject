@@ -1,23 +1,21 @@
-import execIterator from './exec-iterator';
+export default function unwrap(jsx, types) {
+  const { children } = jsx;
+  const init = (
+    children.length === 0 ? types.nullLiteral() :
+    children.length === 1 ? children[0] :
+    types.arrayExpression(
+      children.map((child, index) => {
+        child.openingElement.attributes.push(
+          types.JSXAttribute(
+            types.JSXIdentifier('key'),
+            types.StringLiteral(`.${index}`),
+          ),
+        );
+        return child;
+      }),
+    )
+  );
+  const props = jsx.openingElement.attributes;
 
-
-const svgRegExp = /<svg ?([^>]+)>([^]*)<\/svg>/i;
-const attributeRegExp = /([^"]+"[^"]+)" ?/;
-
-export default function unwrap(originalContents, types) {
-  const [, attributes, contents] = svgRegExp.exec(originalContents);
-  const props = Array.from(execIterator(attributeRegExp, attributes))
-    .map(([, attribute]) => {
-      const [name, value] = attribute.split('="');
-
-      return types.JSXAttribute(
-        types.JSXIdentifier(name),
-        types.StringLiteral(value),
-      );
-    });
-
-  return {
-    init: types.StringLiteral(contents.trim()),
-    props,
-  };
+  return { init, props };
 }

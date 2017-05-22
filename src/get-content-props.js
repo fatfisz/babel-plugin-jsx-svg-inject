@@ -20,8 +20,12 @@ function getPropsFromSource(path, pathToSvg, { opts, types }) {
     return { init: jsx };
   }
 
+  if (!jsx) {
+    throw path.buildCodeFrameError(`File could not be unwrapped: ${pathToSvg}`);
+  }
+
   try {
-    return unwrap(contents, types);
+    return unwrap(jsx, types);
   } catch (error) {
     throw path.buildCodeFrameError(`File could not be unwrapped: ${pathToSvg}`);
   }
