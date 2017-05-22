@@ -4,7 +4,7 @@ import execIterator from './exec-iterator';
 const svgRegExp = /<svg ?([^>]+)>([^]*)<\/svg>/i;
 const attributeRegExp = /([^"]+"[^"]+)" ?/;
 
-export default function unwrap(path, originalContents, { types }) {
+export default function unwrap(originalContents, types) {
   const [, attributes, contents] = svgRegExp.exec(originalContents);
   const props = Array.from(execIterator(attributeRegExp, attributes))
     .map(([, attribute]) => {
@@ -16,5 +16,8 @@ export default function unwrap(path, originalContents, { types }) {
       );
     });
 
-  return { contents, props };
+  return {
+    init: types.StringLiteral(contents.trim()),
+    props,
+  };
 }

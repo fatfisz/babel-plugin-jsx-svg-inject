@@ -8,13 +8,14 @@ export default {
   entry: 'src/index.js',
   plugins: [
     babel({
+      babelrc: false,
       plugins: [
         ['transform-object-rest-spread', { useBuiltIns: true }],
       ],
       presets: [
         ['env', {
           targets: {
-            node: 4,
+            node: 6,
           },
           exclude: [
             'transform-regenerator',
@@ -23,7 +24,7 @@ export default {
           modules: false,
         }],
       ],
-    }),
+    })
   ],
   external,
   targets: [

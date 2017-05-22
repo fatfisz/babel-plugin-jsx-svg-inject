@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 
+import getJSXFromContents from './get-jsx-from-contents';
 import unwrap from './unwrap';
 
 
@@ -11,28 +12,23 @@ function getSource(path, pathToSvg) {
   }
 }
 
-function getPropsFromSource(path, pathToSvg, state) {
+function getPropsFromSource(path, pathToSvg, { opts, types }) {
   const contents = getSource(path, pathToSvg);
+  const jsx = getJSXFromContents(contents, types);
 
-  if (!state.opts.unwrap) {
-    return { contents };
+  if (!opts.unwrap) {
+    return { init: jsx };
   }
 
   try {
-    return unwrap(path, contents, state);
+    return unwrap(contents, types);
   } catch (error) {
     throw path.buildCodeFrameError(`File could not be unwrapped: ${pathToSvg}`);
   }
 }
 
-export default function getContentProps(path, state, pathToSvg, contentsId) {
-  const { contents, props = [] } = getPropsFromSource(path, pathToSvg, state);
-  const { types } = state;
-
-  path.scope.getProgramParent().push({
-    id: contentsId,
-    init: types.StringLiteral(contents.trim()),
-  });
-
+export default function getContentProps(path, state, pathToSvg, id) {
+  const { init, props = [] } = getPropsFromSource(path, pathToSvg, state);
+  path.scope.getProgramParent().push({ id, init });
   return props;
 }
