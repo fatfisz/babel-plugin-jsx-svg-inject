@@ -24,7 +24,7 @@ export default {
           modules: false,
         }],
       ],
-    })
+    }),
   ],
   external,
   targets: [
