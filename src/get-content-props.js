@@ -33,6 +33,6 @@ function getPropsFromSource(path, pathToSvg, { opts, types }) {
 
 export default function getContentProps(path, state, pathToSvg, id) {
   const { init, props = [] } = getPropsFromSource(path, pathToSvg, state);
-  path.scope.getProgramParent().push({ id, init });
+  path.scope.getProgramParent().push({ id, init, _blockHoist: 1 });
   return props;
 }
