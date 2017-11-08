@@ -31,8 +31,17 @@ function getPropsFromSource(path, pathToSvg, { opts, types }) {
   }
 }
 
-export default function getContentProps(path, state, pathToSvg, id) {
+export default function getContentProps(path, state, pathToSvg, contentsId) {
+  const { opts, types } = state;
   const { init, props = [] } = getPropsFromSource(path, pathToSvg, state);
-  path.scope.getProgramParent().push({ id, init, _blockHoist: 1 });
+  const topLevelStatement = path.find((path) => path.parentPath.isProgram());
+
+  topLevelStatement.insertBefore(
+    types.variableDeclaration(
+      'var',
+      [types.variableDeclarator(contentsId, init)],
+    ),
+  );
+
   return props;
 }

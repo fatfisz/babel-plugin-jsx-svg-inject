@@ -1,8 +1,8 @@
 import { relative } from 'path';
 
 
-export default function getImportProps({ scope }, { file, types }, pathToSvg, contentsId) {
-  scope.getProgramParent().path.unshiftContainer(
+export default function getImportProps({ file, types }, pathToSvg, contentsId) {
+  file.scope.path.unshiftContainer(
     'body',
     types.importDeclaration(
       [types.importDefaultSpecifier(contentsId)],
