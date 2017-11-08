@@ -82,6 +82,13 @@ Install from the npm and then add this to `.babelrc`:
 
 ## Options
 
+### `root`
+Default: `'.'`
+
+The path to the icons.
+
+In case root is a relative path (e.g. `./some-path`), it will be resolved using the current working directory.
+
 ### `nameProp`
 Default: `'svgName'`
 
@@ -115,13 +122,6 @@ Default: `false`
 
 If `true`, a relative import will be added instead of an inlined content.
 This was the default behavior before v.4.
-
-### `root`
-Default: `'.'`
-
-The path that will be used in the resulting import declaration.
-
-Relative paths (e.g. `./some-path`), will be resolved using the current working directory.
 
 ## License
 
