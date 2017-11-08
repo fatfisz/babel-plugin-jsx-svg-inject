@@ -9,7 +9,7 @@
     "svg",
     "transform"
   ],
-  "version": "5.0.1",
+  "version": "5.0.2",
   "main": "lib/index.js",
   "files": [
     "lib"
