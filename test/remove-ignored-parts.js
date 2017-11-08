@@ -65,4 +65,34 @@ describe('removeIgnoredParts', () => {
 
     assert.equal(result, expected);
   });
+
+  it('should remove doctype', () => {
+    const original = `
+      <element />
+      <another><!DOCTYPE who="cares"></another>
+    `;
+    const expected = `
+      <element />
+      <another></another>
+    `;
+
+    const result = removeIgnoredParts(original);
+
+    assert.equal(result, expected);
+  });
+
+  it('should remove the shortest doctype', () => {
+    const original = `
+      <!doctype here><element /><!DOCTYPE and there>
+      <another><!doctype comment>sup></another>
+    `;
+    const expected = `
+      <element />
+      <another>sup></another>
+    `;
+
+    const result = removeIgnoredParts(original);
+
+    assert.equal(result, expected);
+  });
 });

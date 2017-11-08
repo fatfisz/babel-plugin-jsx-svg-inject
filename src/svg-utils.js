@@ -5,13 +5,15 @@ import tagSet from './tag-set';
 
 const commentRegExp = /<!--[^]*?-->/g;
 const processingInstructionRegExp = /<\?[^]*?\?>/g;
+const doctypeRegExp = /<!doctype[^]*?>/ig;
 const tagNameRegExp = /^\S+/;
 const attributeRegExp = /([^"]+"[^"]+)"/;
 
 export function removeIgnoredParts(contents) {
   return contents
     .replace(commentRegExp, '')
-    .replace(processingInstructionRegExp, '');
+    .replace(processingInstructionRegExp, '')
+    .replace(doctypeRegExp, '');
 }
 
 export function getElement(name, props, children, isSelfClosing, types) {
